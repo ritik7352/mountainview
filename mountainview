@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mountain View Animation</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #87CEEB; /* Sky Blue */ }
+        canvas { display: block; }
+    </style>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+        // Initialize the canvas and stage
+        let canvas, stage, exportRoot;
+
+        function init() {
+            canvas = document.createElement('canvas');
+            document.body.appendChild(canvas);
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            stage = new createjs.Stage(canvas);
+            stage.enableMouseOver(); // Enable mouse interactions if needed
+            createjs.Ticker.framerate = 24; // Set frame rate
+            createjs.Ticker.addEventListener("tick", stage);
+
+            // Load the animation (assuming it's in a separate JS file)
+            exportRoot = new lib.MountainView(); // Replace 'lib.MountainView' with your actual class name
+            stage.addChild(exportRoot);
+
+            // Make the canvas responsive
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        }
+
+        function handleResize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            exportRoot.x = canvas.width / 2; // Center the animation
+            exportRoot.y = canvas.height / 2;
+        }
+
+        // --- Adobe Animate Library (Conceptual) ---
+        // The following is NOT actual code, but represents the structure
+        // of the animation elements as created in Adobe Animate.  This
+        // is provided to illustrate how the visual elements are organized.
+
+        // MovieClip: MountainView
+        //   Layer: Mountains
+        //     Shape: Mountain1 (Vector Shape)
+        //     Shape: Mountain2 (Vector Shape)
+        //   Layer: River
+        //     Shape: RiverShape (Vector Shape, animated with Shape Tween)
+        //   Layer: Boat
+        //     MovieClip: BoatInstance
+        //       Layer: BoatBody
+        //         Shape: BoatShape (Vector Shape)
+        //       Layer: Paddle (If applicable)
+        //         Rotation: Animated (Classic Tween or Timeline)
+        //   Layer: Background
+        //     Shape: SkyGradient (Gradient fill)
+        //     Shape: Clouds (Optional, animated with Motion Tween)
+
+        // --- JavaScript Interactions (Conceptual) ---
+        //  * Boat movement would be controlled by setting the 'x' and 'y'
+        //     properties of the 'BoatInstance' MovieClip over time,
+        //     likely using a Motion Tween within the Animate timeline.
+        //  * River flow would be an animated Shape Tween.
+        //  * Parallax scrolling of the mountains could be achieved by
+        //     adjusting their 'x' positions at different rates.
+
+        // ---  End of Conceptual Code ---
+
+        // Kick off the animation
+        window.onload = init;
+    </script>
+    <script>
+        // Placeholder for the Adobe Animate exported JS.  In a real
+        // project, this would be the actual JavaScript file generated
+        // by Adobe Animate when you publish your animation.  It would
+        // contain the definitions for all the MovieClips and shapes.
+        //
+        // For example:
+        //
+        // var lib = {
+        //   MountainView: function() {
+        //     // ... (code to create the mountains, river, boat, etc.)
+        //   },
+        //   Boat: function() {
+        //     // ... (code to create the boat MovieClip)
+        //   }
+        // };
+        //
+        // In this placeholder, we're just defining empty objects to avoid errors.
+        var lib = {
+            MountainView: function() {
+                this.x = 0;
+                this.y = 0;
+                this.addChild = function(child) {
+                    //console.log("Added child:", child);  //For Debug
+                }
+            },
+            Boat: function() {}
+        };
+    </script>
+</head>
+<body>
+    <script>
+        // Initialization (moved inside window.onload)
+    </script>
+</body>
+</html>
